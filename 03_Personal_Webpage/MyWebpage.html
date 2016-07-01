@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ZengZag Webpage</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    body, h1, h2, h3, h4, h5, h6{
+        font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;;
+    }
+    .hoverat:hover,
+    .hoverat:focus{
+        background-color: #eee0e3;
+    }
+    #zeng:hover,
+    #zeng:focus{
+        background-color: #eee0e3;
+    }
+    #zeng{
+        background-color: #D6C9Cc;
+        border-bottom-color:#696969;
+        border-bottom-width:2px;
+        border-bottom-style:solid;
+    }
+    .nav-background-1{
+        background-color: #D2C2C6;
+        border-bottom-color:#696969;
+        border-bottom-width:2px;
+        border-bottom-style:solid;
+    }
+
+    .nav-background-2{
+        background-color: #D6C9Cc;
+    }
+
+    .blackcolor{
+        color: black;
+    }
+
+    #Home {
+        min-height:900px;
+        background-image: url(http://t1.qpic.cn/mblogpic/40524a59da54a5bf1092/2000);
+        background-attachment: fixed;
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+    .home-top{
+        margin-top:40px;
+    }
+    .home-h1{
+        margin-top:20%;
+        font-size: 500%;
+        color:lightgray;
+        text-shadow:4px 3px 4px #000000;
+
+    }
+    .home-h3{
+        color:darkgray;
+        text-shadow:1px 1px 2px #000000;
+            }
+
+
+</style>
+
+<body>
+<nav class="navbar navbar-default navbar-fixed-top nav-background-1">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" id="zeng"><span class="blackcolor "><strong>曾光IXIXI</strong></span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse ">
+            <ul class="nav navbar-nav navbar-right nav-background-2">
+                <li class="hoverat"><a href="#Home"><span class="blackcolor"><strong>首页</strong></span></a></li>
+                <li class="hoverat"><a href="#About"><span class="blackcolor"><strong>简介</strong></span></a></li>
+                <li class="hoverat"><a href="#"><span class="blackcolor"><strong>个人作品</strong></span></a></li>
+                <li class="hoverat"><a href="#"><span class="blackcolor"><strong>联系我</strong></span></a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div id="Home">
+    <div class="container home-top">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="text-center home-h1">个人作品展示</h1>
+                <div class="page-header">
+                    <h3 class="text-center home-h3">有多大的思想，才有多大的能量.</h3>
+                </div>
+                <ul class="list-inline">
+                    <li><a class="btn btn-default btn-lg " href="#" role="button" target="_blank"><i class="fa fa-weibo"> 新浪微博</i> </a></li>
+                    <li><a class="btn btn-default btn-lg" href="#" role="button" target="_blank"><i class="fa fa-github"> Github</i> </a></li>
+                    <li><a class="btn btn-default btn-lg" href="#" role="button" target="_blank"><i class="fa fa-linkedin"> Linkedin</i> </a></li>
+                    <li><a class="btn btn-default btn-lg" href="#" role="button" target="_blank"><i class="fa fa-fire"> freeCodeCamp</i> </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="About">
+    <h1 class="text-center">Infinito Web Design Studio</h1>
+    <h2 class="text-center">Where Awesomeness Is Brought To Life.</h2>
+</div>
+
+</body>
+</html>
