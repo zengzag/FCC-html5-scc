@@ -47,7 +47,7 @@
 
     #Home {
         min-height:900px;
-        background-image: url(http://t1.qpic.cn/mblogpic/40524a59da54a5bf1092/2000);
+        background-image: url(http://ww3.sinaimg.cn/large/61d76189gw1f5fex7cn0cj21hc0xckd2.jpg);
         background-attachment: fixed;
         background-position:center;
         background-repeat: no-repeat;
@@ -55,20 +55,162 @@
     }
     .home-top{
         margin-top:40px;
+        margin-bottom: -40px;
+    }
+    .home-top-last{
+        padding-top:40px;
+    }
+    .foot{
+        background-color:#D2C2C6;
     }
     .home-h1{
         margin-top:20%;
         font-size: 500%;
-        color:lightgray;
+        color: #ededed;
         text-shadow:4px 3px 4px #000000;
-
     }
     .home-h3{
-        color:darkgray;
+        color: #f5d9d1;
         text-shadow:1px 1px 2px #000000;
-            }
+    }
+    .ul-center{
+        text-align: center;
+    }
 
+    .li-block{
+        display: inline-block;
+        margin-bottom:15px;
+    }
+    .li-block2{
+        display: block;
+        margin-bottom:15px;
+    }
+    .btn-theme{
+        width:186px;
+        color:#000000;
+        border-width: 2px;
+        border-style:outset;
+        border-color: #000000;
+        box-shadow: 1px 2px 2px #000000;
+        background: #e7e7e7;
+        transition-duration: 0.2s;
+    }
+    .btn-theme:hover{
+        box-shadow: 1px 2px 2px #000000;
+        color: #ffffff;
+        border-width: 2px;
+        border-style:outset;
+        border-color: #000000;
+        background: #717171;
+        letter-spacing: 1px;
+        transition-duration: 0.2s;
+    }
+    #About {
+        min-height:900px;
+        background-image: url(http://ww2.sinaimg.cn/large/61d76189gw1f5fex4qxeaj21hc0u0qdn.jpg);
+        background-attachment: fixed;
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+    #Portfolio {
+        min-height:900px;
+        background-image: url(http://ww4.sinaimg.cn/large/61d76189gw1f5fex696nij21hc0xc1kx.jpg);
+        background-attachment: fixed;
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+    #Contact {
+        min-height:800px;
+        background-image: url(http://ww3.sinaimg.cn/large/61d76189gw1f5fex840u8j21hc0xctmt.jpg);
+        background-attachment: fixed;
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+    .about-h1{
+        margin-top:20%;
+        font-size: 300%;
+        color: #ffffff;
+    }
+    .about-p{
+        margin-top:10%;
+        font-size: 160%;
+        color: #ffffff;
+    }
+    .about-img{
+        margin-top:10%;
+    }
+    .contact-h1{
+        margin-top:20%;
+        font-size: 250%;
+        color: #ffffff;
+    }
+    .contact-ul{
+        margin-top:30%;
+    }
+    .portfolio-h1{
+        margin-top:10%;
+        font-size: 300%;
+        color: #ffffff;
+    }
+    .portfolio-h3{
+        font-size: 150%;
+        color: #ffffff;
+    }
+    .prot-text{
+        background-color: #1e1e1e;
+        opacity:0.9;
+        color: #ffffff;
+        margin: 0 auto;
+        max-width: 300px;
+        text-align: center;
+    }
+    .prot-text-p{
+        background-color: #1e1e1e;
+        opacity:0.9;
+        color: #ffffff;
+        margin: 0 auto;
+        max-width: 300px;
+        text-align: center;
+        margin-bottom: 50px;
+    }
 
+    #Portfolio *{
+        z-index: 2;
+    }
+    .disappear {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        max-width: 300px;
+        text-align: center;
+    }
+    .img-width{
+        max-width: 300px;
+    }
+    .disappear-heart{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        opacity: 0;
+        transition-duration: 0.2s;
+    }
+    .disappear-i {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        text-align: center;
+        color: #ffffff;
+    }
+    .disappear-heart:hover{
+        opacity: 0.6;
+        transition-duration: 0.2s;
+        transform:scale(1.03);
+    }
 </style>
 
 <body>
@@ -81,14 +223,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" id="zeng"><span class="blackcolor "><strong>曾光IXIXI</strong></span></a>
+            <a class="navbar-brand" href="https://github.com/zengzag" id="zeng"><span class="blackcolor "><strong>曾光IXIXI</strong></span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse ">
             <ul class="nav navbar-nav navbar-right nav-background-2">
                 <li class="hoverat"><a href="#Home"><span class="blackcolor"><strong>首页</strong></span></a></li>
                 <li class="hoverat"><a href="#About"><span class="blackcolor"><strong>简介</strong></span></a></li>
-                <li class="hoverat"><a href="#"><span class="blackcolor"><strong>个人作品</strong></span></a></li>
-                <li class="hoverat"><a href="#"><span class="blackcolor"><strong>联系我</strong></span></a></li>
+                <li class="hoverat"><a href="#Portfolio"><span class="blackcolor"><strong>个人作品</strong></span></a></li>
+                <li class="hoverat"><a href="#Contact"><span class="blackcolor"><strong>联系我</strong></span></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -96,25 +238,173 @@
 <div id="Home">
     <div class="container home-top">
         <div class="row">
-            <div class="col-lg-12">
-                <h1 class="text-center home-h1">个人作品展示</h1>
+            <div class="col-md-12">
+                <h1 class="text-center home-h1">IXIXI的工作室</h1>
                 <div class="page-header">
                     <h3 class="text-center home-h3">有多大的思想，才有多大的能量.</h3>
                 </div>
-                <ul class="list-inline">
-                    <li><a class="btn btn-default btn-lg " href="#" role="button" target="_blank"><i class="fa fa-weibo"> 新浪微博</i> </a></li>
-                    <li><a class="btn btn-default btn-lg" href="#" role="button" target="_blank"><i class="fa fa-github"> Github</i> </a></li>
-                    <li><a class="btn btn-default btn-lg" href="#" role="button" target="_blank"><i class="fa fa-linkedin"> Linkedin</i> </a></li>
-                    <li><a class="btn btn-default btn-lg" href="#" role="button" target="_blank"><i class="fa fa-fire"> freeCodeCamp</i> </a></li>
+                <ul class="list-inline ul-center">
+                    <li class="li-block"><a class="btn btn-default btn-lg btn-theme" href="http://weibo.com/1641505161" role="button" target="_blank"><i class="fa fa-weibo"></i> 新浪微博</a></li>
+                    <li class="li-block"><a class="btn btn-default btn-lg btn-theme" href="https://github.com/zengzag" role="button" target="_blank"><i class="fa fa-github"></i> Github</a></li>
+                    <li class="li-block"><a class="btn btn-default btn-lg btn-theme" href="https://cn.linkedin.com/in/zengzag" role="button" target="_blank"><i class="fa fa-linkedin"></i> Linkedin</a></li>
+                    <li class="li-block"><a class="btn btn-default btn-lg btn-theme" href="https://www.freecodecamp.cn/zengzag" role="button" target="_blank"><i class="fa fa-fire"></i> freeCodeCamp</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <div id="About">
-    <h1 class="text-center">Infinito Web Design Studio</h1>
-    <h2 class="text-center">Where Awesomeness Is Brought To Life.</h2>
+    <div class="container home-top">
+        <div class="row">
+            <div class="col-md-5 col-sm-6">
+                <h1 class="about-h1">基本情况介绍</h1>
+                <p class="about-p"> 我是一个来自中国的软件工程学生，我对前端开发很感兴趣.<br/>
+                    这个网页是我初学FCC的作业，我为此付出了比较多的心血.<br/>
+                    我对新技术非常感兴趣，喜欢解决难题，这也是我能坚持<a href="https://www.freecodecamp.cn/zengzag">自学</a>的原因.<br/>
+                    能力:<br/>
+                    语言和框架:<br/>
+                    Javascript, HTML5, CSS3, jQuery, Bootstrap3, Python.<br/>
+                    工具和技能:<br/>
+                    Git, Linux, VIM.</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1 col-sm-6 about-img">
+                <img src="http://ww3.sinaimg.cn/mw690/61d76189gw1f5ff3499zij206p0690ss.jpg"
+                     class="img-circle .img-responsive">
+            </div>
+        </div>
+    </div>
 </div>
+<div id="Portfolio">
+    <div class="container home-top">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center portfolio-h1">个人作品展示</h1>
+                <h3 class="text-center portfolio-h3">学习前端的小项目.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <a href="http://codepen.io/zengzag/full/LkyVyJ/" target="_blank" class="disappear">
+                    <div class="disappear-heart">
+                        <div class="disappear-i">
+                            <i class="fa fa-heart fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="http://ww3.sinaimg.cn/large/61d76189gw1f5fex35gisj214r0pt12a.jpg" class="img-width">
+                </a>
+                <div class="prot-text">
+                    <h3 class="prot-text">纪念毛主席</h3>
+                    <p class="prot-text-p">FCC前端第一题</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="#" target="_blank" class="disappear">
+                    <div class="disappear-heart">
+                        <div class="disappear-i">
+                            <i class="fa fa-heart fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="http://ww3.sinaimg.cn/large/61d76189gw1f5fex35gisj214r0pt12a.jpg" class="img-width">
+                </a>
+                <div class="prot-text">
+                    <h3 class="prot-text">暂无</h3>
+                    <p class="prot-text-p">敬请期待</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="#" target="_blank" class="disappear">
+                    <div class="disappear-heart">
+                        <div class="disappear-i">
+                            <i class="fa fa-heart fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="http://ww3.sinaimg.cn/large/61d76189gw1f5fex35gisj214r0pt12a.jpg" class="img-width">
+                </a>
+                <div class="prot-text">
+                    <h3 class="prot-text">暂无</h3>
+                    <p class="prot-text-p">敬请期待</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="#" target="_blank" class="disappear">
+                    <div class="disappear-heart">
+                        <div class="disappear-i">
+                            <i class="fa fa-heart fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="http://ww3.sinaimg.cn/large/61d76189gw1f5fex35gisj214r0pt12a.jpg" class="img-width">
+                </a>
+                <div class="prot-text">
+                    <h3 class="prot-text">暂无</h3>
+                    <p class="prot-text-p">敬请期待</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="#" target="_blank" class="disappear">
+                    <div class="disappear-heart">
+                        <div class="disappear-i">
+                            <i class="fa fa-heart fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="http://ww3.sinaimg.cn/large/61d76189gw1f5fex35gisj214r0pt12a.jpg" class="img-width">
+                </a>
+                <div class="prot-text">
+                    <h3 class="prot-text">暂无</h3>
+                    <p class="prot-text-p">敬请期待</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="#" target="_blank" class="disappear">
+                    <div class="disappear-heart">
+                        <div class="disappear-i">
+                            <i class="fa fa-heart fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="http://ww3.sinaimg.cn/large/61d76189gw1f5fex35gisj214r0pt12a.jpg" class="img-width">
+                </a>
+                <div class="prot-text">
+                    <h3 class="prot-text">暂无</h3>
+                    <p class="prot-text-p">敬请期待</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="Contact">
+    <div class="container home-top-last">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                <h1 class="contact-h1">如有疑问请联系：<br/>zengzag@hotmail.com</h1>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <ul class="list-unstyled contact-ul">
+                    <li class="li-block2"><a class="btn btn-default btn-lg btn-theme" href="http://weibo.com/1641505161" role="button" target="_blank"><i class="fa fa-weibo"></i> 新浪微博</a></li>
+                    <li class="li-block2"><a class="btn btn-default btn-lg btn-theme" href="https://github.com/zengzag" role="button" target="_blank"><i class="fa fa-github"></i> Github</a></li>
+                    <li class="li-block2"><a class="btn btn-default btn-lg btn-theme" href="https://cn.linkedin.com/in/zengzag" role="button" target="_blank"><i class="fa fa-linkedin"></i> Linkedin</a></li>
+                    <li class="li-block2"><a class="btn btn-default btn-lg btn-theme" href="https://www.freecodecamp.cn/zengzag" role="button" target="_blank"><i class="fa fa-fire"></i> freeCodeCamp</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="foot">
+    <div class="container home-top-last">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="list-inline">
+                    <li>
+                        <a href="#">Home - </a>
+                        <a href="#About">About - </a>
 
+                        <a href="#Portfolio">Portfolio - </a>
+
+                        <a href="#Contact">Contact</a>
+                    </li>
+                </ul>
+                <p class="copyright small">Copyright &copy; IXIXI的工作室 2016.</p>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
