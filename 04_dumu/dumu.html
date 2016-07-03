@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>dump</title>
+    <style>
+        body {
+            margin: 30px;
+            text-align: center;
+        }
+
+        .text-box {
+            width: 100%;
+            height: 200px;
+            border: 1px solid;
+            margin-bottom: 10px;
+        }
+        .text-box div{
+            font-size: 22px;
+            line-height: 36px;
+            font-weight: 500;
+            color: #000000;
+            position: absolute;
+            left: 50px;
+            top: 50px;
+        }
+        .input-text-div {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .sub-btn {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="text-box">
+    <div></div>
+</div>
+
+<div class="send-text">
+    <div class="input-text-div">
+        <input type="text" placeholder="输入弹幕?" id="text-input" class="input-text">
+    </div>
+    <div class="sub-btn">
+        <button type="submit" id="send">send</button>
+            <button type="submit" id="clear">clear</button>
+    </div>
+</div>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script>
+    $("#send").click(function() {
+        $(".text-box").append("<div>"+$("#text-input").val()+"</div>");
+        $("#text-input").val('');
+        $(".text-box div").animate({left:"+=900px"},5000);
+        $($(".text-box div").first()).remove();
+    });
+
+    $("#clear").click(function() {
+        $(".text-box").empty();
+    });
+</script>
+</body>
+</html>
