@@ -4,64 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <title>dump</title>
-    <style>
-        body {
-            margin: 30px;
-            text-align: center;
-        }
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style> body {
+        margin: 30px;
+        text-align: center;
+    }
 
-        .text-box {
-            width: 100%;
-            height: 200px;
-            border: 1px solid;
-            margin-bottom: 10px;
-        }
-        .text-box div{
-            font-size: 22px;
-            line-height: 36px;
-            font-weight: 500;
-            color: #000000;
-            position: absolute;
-            left: 50px;
-            top: 50px;
-        }
-        .input-text-div {
-            text-align: center;
-            margin-bottom: 10px;
-        }
+    .text-box {
+        width: 100%;
+        height: 300px;
+        border: 1px solid;
+        margin-bottom: 10px;
+        position: relative;
+    }
 
-        .sub-btn {
-            text-align: center;
-        }
+    .input-text-div {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .sub-btn {
+        text-align: center;
+    }
+    .send{
+        margin-top:10px;
+        margin-right:20px;
+    }
+    .clear{
+        margin-top:10px;
+    }
+    .text-box div{
+        font-size: xx-large;
+        height: 30px;
+        position: absolute;
+        font-weight: normal;
+        left: 0;
+        top: 0;
+    }
+
     </style>
 
 </head>
 
 <body>
 <div class="text-box">
-    <div></div>
+
 </div>
 
 <div class="send-text">
     <div class="input-text-div">
-        <input type="text" placeholder="输入弹幕?" id="text-input" class="input-text">
+        <input type="text" placeholder="输入弹幕" id="text-input" class="input-text">
     </div>
     <div class="sub-btn">
-        <button type="submit" id="send">send</button>
-            <button type="submit" id="clear">clear</button>
+        <button type="submit" class="btn btn-default send ">send</button>
+        <button type="submit" class="btn btn-default clear">clear</button>
     </div>
 </div>
-<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<script>
-    $("#send").click(function() {
-        $(".text-box").append("<div>"+$("#text-input").val()+"</div>");
-        $("#text-input").val('');
-        $(".text-box div").animate({left:"+=900px"},5000);
-        $($(".text-box div").first()).remove();
-    });
 
-    $("#clear").click(function() {
-        $(".text-box").empty();
+<script>
+    $(document).ready(function() {
+
+        $(".send").click(function() {
+            var text= $('#text-input').val();
+            var obj=$('<div></div>');
+            obj.text(text);
+            danmu(obj);
+            $('#text-input').val('');
+        });
+
+        $(".clear").click(function() {
+            $(".text-box").empty();
+        });
+
+        var min = $('.text-box').offset().top;
+        var max = min + $('.text-box').height();
+
+        var danmu = function(div){
+            $('.text-box').append(div);
+            var maxWidth=$('.text-box').width()-div.width();
+            div.css({"top":Math.floor(Math.random()*(max-min-32)+min-32)+'px',color:randColor()});
+            div.animate({left:maxWidth+ "px"},5000,function(){
+                div.remove();
+            });
+        }
+        var randColor = function () {
+            var colorvalue=["0","2","3","4","5","6","7","8","9","a","b","c","d","e","f"],
+                    colorprefix="#",
+                    index;
+            for(var i=0;i < 6; i++){
+                index=Math.round(Math.random()*14);
+                colorprefix+=colorvalue[index];
+            }
+            return colorprefix;
+        }
     });
 </script>
 </body>
