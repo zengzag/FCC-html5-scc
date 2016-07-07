@@ -117,6 +117,7 @@
         });
 
         $('#next').click(function () {
+
             $("body").fadeOut(500);
             setTimeout(function () {
                 var colors = randomColor();
@@ -129,12 +130,9 @@
         })
 
         function nextText() {
-            if (textArr.length <= 0) {
-                alert('已无新数据');
-                return false;
-            }
-            ;
-            var temp = textArr.pop();
+
+            var num = Math.floor(Math.random() * textArr.length);
+            var temp = textArr[num];
             $('#text').html(temp);
         }
 
@@ -155,20 +153,34 @@
             } else {
                 day.toString()
             }
-            var dataUrl = 'http://api.kanzhihu.com/getpostanswers/' + year + month + day + '/yesterday'
+            var dataUrl = 'http://api.kanzhihu.com/getpostanswers/' + year + month + day + '/yesterday';
             //存入textArr中
-            $.getJSON(dataUrl, function (jdata) {
-                var count = jdata.count;
-                for (var i = 0; i < count; i++) {
-                    var a = jdata.answers[i].title;
-                    var b = jdata.answers[i].authorname;
-                    var c = jdata.answers[i].summary;
-                    textArr.push('<span class="title">' + a + '</span><br/>' + '<span class="author">作者：' + b + '</span><br/>' + c);
+            $.ajax({
+                url: dataUrl,
+                dataType: 'json',
+                timeout: 10000,
+                success: function (jdata) {
+                    var count = jdata.count;
+                    for (var i = 0; i < count; i++) {
+                        var a = jdata.answers[i].title;
+                        var b = jdata.answers[i].authorname;
+                        var c = jdata.answers[i].summary;
+                        textArr.push('<span class="title">' + a + '</span><br/>' + '<span class="author">作者：' + b + '</span><br/>' + c);
+                    }
                 }
-                nextText();
-
             });
-
+            /*$.getJSON(dataUrl, function (jdata) {
+             var count = jdata.count;
+             for (var i = 0; i < count; i++) {
+             var a = jdata.answers[i].title;
+             var b = jdata.answers[i].authorname;
+             var c = jdata.answers[i].summary;
+             textArr.push('<span class="title">' + a + '</span><br/>' + '<span class="author">作者：' + b + '</span><br/>' + c);
+             }*/
+            if (textArr.length <= 0) {
+                textArr = ['如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落01', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落02', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落03', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落04', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落05', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落06', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落07', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落08', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落09', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落10', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落11', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落12', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落13', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落14', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落15', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落16', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落17', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落18', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落19', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落20'];
+            }
+            nextText();
         }
     })
 </script>
