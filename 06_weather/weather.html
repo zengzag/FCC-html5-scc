@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>weather</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body * {
+        font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    }
+
+    body {
+        background-color: #ff8000;
+    }
+
+    .head {
+        font-size: 200%;
+        display: block;
+        position: relative;
+        margin: auto;
+        text-align: center;
+        color: white;
+        top: 50px;
+    }
+
+    .h2-small {
+        font-size: medium;
+    }
+
+    .head-h1 {
+        margin-bottom: -10px;
+    }
+    .weather-text{
+        font-size: 200%;
+        display: block;
+        position: relative;
+        margin: auto;
+        text-align: center;
+        color: white;
+        top: 90px;
+    }
+    .city,.temperature,.weather{
+        margin: 8px;
+    }
+
+</style>
+
+<body>
+<div>
+    <div class="head">
+        <h1 class="head-h1">Free C<i class="fa fa-sun-o fa-spin"></i>de Camp</h1>
+        <h2>Weather App<span class="h2-small">by -zengzag</span></h2>
+    </div>
+    <div class="weather-text">
+        <p class="city">益</p>
+        <p class="temperature">28℃</p>
+        <img id="weather-img" src="" width="42" height="30">
+        <p class="weather">晴</p>
+    </div>
+</div>
+</body>
+<script>
+
+    $(document).ready(function () {
+         var url = 'http://api.k780.com:88/?app=weather.today&weaid=' + returnCitySN.cip + '&&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json&&jsoncallback=?';
+         $.getJSON(url, {
+         "dtype": "jsonp"
+         }, function (data) {
+             $('.city').text(data.result.citynm);
+             $('.temperature').text(data.result.temperature);
+             $('.weather').text(data.result.weather);
+             $('#weather-img').attr({'src':data.result.weather_icon});
+         });
+
+        /*$.getJSON('01.js', {}, function (data) {
+            $('.city').text(data.result.citynm);
+            $('.temperature').text(data.result.temperature);
+            $('.weather').text(data.result.weather);
+            $('#weather-img').attr({'src':data.result.weather_icon});
+        });*/
+    })
+
+</script>
+<script src="http://pv.sohu.com/cityjson"></script>
+</html>
+
+
+
+
+
