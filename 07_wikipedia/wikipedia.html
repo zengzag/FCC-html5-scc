@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>wikipedia</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<style>
+body{
+    background-color: #2f2f2f;
+    color:white;
+}
+    .search-box {
+        display: block;
+        position: relative;
+        text-align: center;
+        margin: auto;
+
+    }
+.ramdom-box{
+    margin-top: 80px;
+ }
+    .ramdom-wiki {
+        text-decoration:none;
+        color:white;
+    }
+
+    .search-show {
+        display: block;
+        position: relative;
+        text-align: center;
+        margin: auto;
+    }
+
+    .search-1 {
+        display: block;
+        margin: auto;
+        border-style: solid;
+        border-width: 3px;
+        border-color: white;
+        height: 30px;
+        width: 60px;
+        border-radius: 20px;
+        outline: 0px;
+        text-align: center;
+        color:white;
+        background-color: #2f2f2f;
+
+    }
+
+    .search-1:hover {
+        animation: search-movo 1s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes search-movo {
+        75% {
+            border-radius: 14px;
+            width: 202px;
+        }
+        100% {
+            border-radius: 20px;
+            width: 200px;
+        }
+    }
+
+    .icon {
+        position: relative;
+        left: 120px;
+        top: 30px;
+        font-size: 150%;
+        visibility: hidden;
+        color:white;
+    }
+.search-list{
+    display: block;
+    width: 70%;
+    text-align: left;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+
+</style>
+
+<body>
+<div class="search-box">
+    <h1 class="ramdom-box"><a href='http://en.wikipedia.org/wiki/Special:Random' target='_blank' class="ramdom-wiki">Get a Random Wiki</a>
+    </h1>
+    <div class="search-show">
+        <i class="fa fa-search icon"></i>
+        <input type="text" id="input" placeholder="Search" class="search-1">
+    </div>
+    <div class="list-group search-list">
+
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function () {
+
+        $('#input').on("click", function () {
+            $('#input').css({'width': '200px', 'font-size': '130%', 'font-weight': '600px'});
+            $('.icon').css('visibility', 'visible');
+        });
+        $("#input").keypress(function(event) {
+            if (event.keyCode == "13") {
+                $(".icon").trigger('click');
+            }
+        });
+        $('.icon').on("click", function () {
+            var URL='http://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&callback=?&gsrsearch='+$('#input').val();
+            $.getJSON(URL, {
+                "dtype": "jsonp"
+            }, function (data) {
+                for(key in data.query.pages){
+                    $('.search-list').append('<a href="http://en.wikipedia.org/?curid='+data.query.pages[key].pageid+'" class="list-group-item"> <h4 class="list-group-item-heading">'+data.query.pages[key].title+'</h4> <p class="list-group-item-text">'+data.query.pages[key].extract+'</p> </a>');
+
+                }
+            });
+            $('.ramdom-box').css('display','none');
+        });
+
+    })
+</script>
+</html>
