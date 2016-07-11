@@ -2,9 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Twitchtv</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
+<style>
+    .head {
+        display: block;
+        position: relative;
+        margin: auto;
+        text-align: center;
+        background-color: #717171;
+        width: 70%;
+        height: 80px;
+    }
+
+    h1 {
+        text-align: left;
+        position: relative;
+        top: 20%;
+        left: 20%;
+        color: white;
+    }
+
+    .list-tv {
+        width: 70%;
+        margin: auto;
+        color: white;
+        text-align: center;
+        display: block;
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+        margin: 10px 0px;
+    }
+
+    .text-c {
+        margin: auto;
+        height: 70px;
+        line-height: 70px;
+    }
+
+    .row {
+        display: block;
+        margin: auto;
+        border: 2px solid;
+    }
+    .on{
+        background-color: dimgrey;
+    }
+    .off{
+        background-color: #7a7a7a;
+    }
+    a{
+        text-decoration:none;
+        color:white;
+    }
+</style>
+
 <body>
+<div class="head">
+    <h1>TWITCH STREAMERS</h1>
+</div>
+<div class="list-tv">
+
+</div>
+
 
 </body>
+<script>
+
+    $(document).ready(function () {
+        var tvArr = ["freecodecamp", "storbeck", "terakilobyte", "habathcx", "RobotCaleb", "thomasballinger", "noobs2ninjas", "beohoff", 'sheevergaming'];
+        for (var i = 0; i < 9; i++) {
+            $.getJSON('https://api.twitch.tv/kraken/streams/' + tvArr[i] + '?callback=?', {
+                "type": "jsonp"
+            }, function (data) {
+                if (data.stream) {
+                    $('.list-tv').prepend('<div class="row on"><div class="col-sm-2"><img src="' + data.stream.channel.logo + '"></div><div class="col-sm-3 text-c"><a href="'+data.stream.channel.url+'">' + data.stream.channel.display_name + '</a></div><div class="col-sm-7 text-c">' + data.stream.channel.game + '-' + data.stream.channel.status + '</div></div>');
+                } else{
+                    $.getJSON(data._links.channel+'?callback=?', {
+                        "type": "jsonp"
+                    }, function (data) {
+                        $('.list-tv').append('<div class="row off"><div class="col-sm-2"><img src="' + data.logo + '"></div><div class="col-sm-3 text-c"><a href="'+data.url+'">' + data.display_name + '</a></div><div class="col-sm-7 text-c">off</div></div>');
+                    });
+                }
+            });
+        }
+    })
+</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
