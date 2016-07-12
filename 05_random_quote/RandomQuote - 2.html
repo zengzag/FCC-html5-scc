@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>random quote</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body * {
+        font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    }
+
+    body {
+        text-align: center;
+        background-color: midnightblue;
+    }
+
+    .show-box {
+        background-color: #ffffff;
+        border-radius: 6px;
+        position: relative;
+        display: block;
+        margin: auto;
+        top: 100px;
+        width: 500px;
+    }
+
+    .show-text {
+        color: midnightblue;;
+        border-radius: 6px;
+        position: relative;
+        display: block;
+        margin: auto;
+        font-weight: 700;
+        font-size: larger;
+        min-height: 200px;
+        text-align: center;
+    }
+
+    .text {
+        position: relative;
+        padding: 30px;
+    }
+
+    .button-box {
+        display: block;
+        position: relative;
+        height: 40px;
+    }
+
+    .button {
+        background-color: midnightblue;
+        font-size: 200%;
+        color: white;
+        padding: 3px 15px;
+        border-radius: 5px;
+        position: absolute;
+        bottom: 15px;
+        cursor: pointer;
+    }
+
+    .button:focus,
+    .button:hover {
+        opacity: 0.8;
+    }
+
+    #weibo {
+        left: 30px;
+    }
+
+    #next {
+        right: 30px;
+    }
+</style>
+
+<body>
+<div class="show-box">
+    <div class="show-text">
+        <p class="text text-center" id="text">加载中...</p>
+    </div>
+    <div class="button-box">
+        <a class="button" id="weibo" target="_blank"><i class="fa fa-weibo"></i></a>
+        <a class="button" id="next" target="_blank">NEXT</a>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function () {
+        var textArr = [];
+        getText();
+        function randomColor() {
+            //var colorvalue = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"],
+            //防止颜色太亮
+            var colorvalue = ["0", "1", "2", "3", "4", "5", "6"],
+                    colorprefix = "#",
+                    index;
+            for (var i = 0; i < 6; i++) {
+                index = Math.round(Math.random() * 5);
+                colorprefix += colorvalue[index];
+            }
+            return colorprefix;
+        }
+
+        $('#weibo').click(function () {
+            var title = $('#text').text();
+            var url = 'http://service.weibo.com/share/share.php?&title=' + title;
+            window.open(url);
+        });
+
+        $('#next').click(function () {
+            $("body").fadeOut(500);
+            setTimeout(function () {
+                var colors = randomColor();
+                $("body").css('background-color', colors);
+                $(".button").css('background-color', colors);
+                $(".show-text").css('color', colors);
+                nextText();
+            }, 500);
+            $("body").fadeIn(500);
+                    })
+
+        function nextText() {
+            var num = Math.floor(Math.random() * textArr.length);
+            var temp = textArr[num];
+            $('#text').html(temp);
+        }
+
+        function getText() {
+            var url = 'http://v.juhe.cn/joke/randJoke.php?callback=?&type=&key=df2cedffec9ac03388aee7c803d90a6e';
+            $.getJSON(url, {
+                "dtype": "jsonp"
+            }, function (data) {
+                var count = data.result.length;
+                for (var i = 0; i < count; i++) {
+                    var a = data.result[i].content;
+                    textArr.push(a);
+                    nextText();
+                }
+            });
+            nextText();
+        }
+    })
+</script>
+</html>
