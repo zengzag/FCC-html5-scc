@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pomodoro Clock</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<style>
+    body {
+        background-color: #374540;
+    }
+
+    .head {
+        position: relative;
+        top: 30px;
+        text-align: center;
+        color: deepskyblue;
+        font-size: 75px;
+        font-weight: 700;
+    }
+
+    .clock {
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        text-align: center;
+        top: 150px;
+        left: 50%;
+        margin-left: -200px;
+    }
+
+    .backColor {
+        width: 400px;
+        height: 400px;
+        border-radius: 200px;
+        position: absolute;
+        background-color: coral;
+    }
+
+    .right {
+        width: 400px;
+        height: 400px;
+        border-radius: 200px;
+        position: absolute;
+        clip: rect(0px, 400px, 400px, 200px);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        background-color: white;
+        z-index: 1;
+    }
+
+    .left {
+        width: 400px;
+        height: 400px;
+        border-radius: 200px;
+        position: absolute;
+        clip: rect(0px, 200px, 400px, 0px);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        background-color: white;
+        z-index: 1;
+    }
+
+    .time {
+        position: absolute;
+        text-align: center;
+        width: 360px;
+        height: 360px;
+        margin: 20px 0 0 20px;
+        border-radius: 180px;
+        background-color: deepskyblue;
+        color: white;
+        z-index: 2;
+    }
+
+    .bt {
+        position: relative;
+        top: 120px;
+        width: 100px;
+        height: 100px;
+        background-color: deepskyblue;
+        color: white;
+        outline: 0px;
+        font-size: 25px;
+        border: 0px;
+        text-align: center;
+        margin: 10px;
+    }
+
+    .input {
+        position: relative;
+        top: 120px;
+        width: 120px;
+        height: 100px;
+        background-color: deepskyblue;
+        color: white;
+        outline: 0px;
+        text-align: center;
+        border: 0px;
+        font-size: 80px;
+    }
+
+    .bt:hover {
+        background-color: deepskyblue;
+        color: #374540;
+        outline: 0px;
+        font-size: 25px;
+        border: 0px;
+        text-align: center;
+        cursor: pointer;
+    }
+</style>
+
+<h1 class="head"> FCC CLOCK</h1>
+<div class="clock">
+    <div class="backColor"></div>
+    <div class="right"></div>
+    <div class="left"></div>
+    <form class="time">
+        <input type="text" id="minute" max="59" min="0" class="input" value="0" maxlength="2">
+        <span style="font-size: 80px;color: white;top: 110px;position: relative;">:</span>
+        <input type="text" id="second" max="59" min="0" class="input" value="10" maxlength="2"><br>
+        <span class="bt start"><i class="fa fa-play"></i></span>
+        <span class="bt pause"><i class="fa fa-pause"></i></span>
+        <span class="bt stop"><i class="fa fa-stop"></i></span>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var m = 0;
+        var s = 0;
+        var count = 0;//时间转换为100ms的值
+        var count2 = 0;//时间转换为100ms的值，不变的，算角度
+        var doing;
+        $('.pause').click(function () {
+            clearInterval(doing);
+        });
+
+        $('.stop').click(function () {
+            clearInterval(doing);
+            m = 0;
+            s = 0;
+            count = 0;
+            count2 = 0;
+            $('#minute').val(m);
+            $('#second').val(s);
+            $('.input').removeAttr('readonly');
+            $(".right").css("-o-transform", "rotate(0deg)");
+            $(".right").css("-moz-transform", "rotate(0deg)");
+            $(".right").css("-webkit-transform", "rotate(0deg)");
+            $(".left").css("backgroundColor", "white");
+            $(".left").css("-o-transform", "rotate(0deg)");
+            $(".left").css("-moz-transform", "rotate(0deg)");
+            $(".left").css("-webkit-transform", "rotate(0deg)");
+        });
+
+        $('.start').click(function () {
+            $('.input').attr('readonly', 'true');
+            m = parseInt($('#minute').val());
+            if (!m) {
+                m = 0;
+            }
+            if (m >= 60) {
+                m = 59;
+                $('#minute').val(m);
+            }
+            s = parseInt($('#second').val());
+            if (!s) {
+                s = 0;
+            }
+            if (s >= 60) {
+                s = 60;
+                $('#second').val(s);
+            }
+            count = (m * 60 + s) * 10;
+            if (count == 0) {
+                return 0;
+            }//为0时不启动
+            if (count >= count2) {
+                count2 = count;
+            }//暂停后继续
+            doing = setInterval(start, 100);
+        });
+
+        function start() {
+            count--;
+            if (count == 0) {
+                clearInterval(doing);
+            }
+            m = Math.floor((count / 600));
+            s = Math.floor((count % 600) / 10);
+            $('#minute').val(m);
+            $('#second').val(s);
+            var angle = Math.floor((count2 - count) * 360 / count2);
+            rotate(angle);
+        }
+
+        function rotate(angle) {
+            if (angle <= 180) {
+                $(".right").css("-o-transform", "rotate(" + angle + "deg)");
+                $(".right").css("-moz-transform", "rotate(" + angle + "deg)");
+                $(".right").css("-webkit-transform", "rotate(" + angle + "deg)");
+            } else {
+                $(".left").css("backgroundColor", "coral");
+                $(".left").css("-o-transform", "rotate(" + angle + "deg)");
+                $(".left").css("-moz-transform", "rotate(" + angle + "deg)");
+                $(".left").css("-webkit-transform", "rotate(" + angle + "deg)");
+            }
+        }
+    });
+</script>
+</body>
+</html>
