@@ -41,7 +41,8 @@
         margin: 0px;
         color: #717171;
     }
-    .btn-info{
+
+    .btn-info {
         width: 188px;
     }
 </style>
@@ -76,22 +77,24 @@
         $('.btn').click(function () {
             var data = $(this).attr("data-btn");
             var text = $(this).text();
-            if(data==1){
+            if (data == 1) {
                 inputText += text;
                 $(".input").val(inputText);
             }
-            if(data==3){
+            if (data == 3) {
                 inputText = '';
                 $(".input").val(inputText);
             }
-            if(data==2){
+            if (data == 2) {
                 inputText = inputText.slice(0, -1);
                 $(".input").val(inputText);
             }
-            if(data==4){
-                inputText=inputText+'='+eval(inputText);
-                $(".input").val(inputText);
-                inputText = '';
+            if (data == 4) {
+                if (inputText) {
+                    inputText = inputText + '=' + eval(inputText);
+                    $(".input").val(inputText);
+                    inputText = '';
+                }
             }
         });
     });
