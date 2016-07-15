@@ -127,8 +127,8 @@
         <input type="text" id="minute" max="59" min="0" class="input" value="0" maxlength="2">
         <span style="font-size: 80px;color: white;top: 110px;position: relative;">:</span>
         <input type="text" id="second" max="59" min="0" class="input" value="10" maxlength="2"><br>
-        <span class="bt start"><i class="fa fa-play"></i></span>
         <span class="bt pause"><i class="fa fa-pause"></i></span>
+        <span class="bt start"><i class="fa fa-play"></i></span>
         <span class="bt stop"><i class="fa fa-stop"></i></span>
     </form>
 </div>
@@ -194,6 +194,7 @@
             count--;
             if (count == 0) {
                 clearInterval(doing);
+                $('.input').removeAttr('readonly');
             }
             m = Math.floor((count / 600));
             s = Math.floor((count % 600) / 10);
