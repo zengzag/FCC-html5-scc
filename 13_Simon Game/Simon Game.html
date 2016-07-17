@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simon Game</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+    .game-box {
+        position: relative;
+        margin: auto;
+        top: 50px;
+        width: 440px;
+        height: 440px;
+        border: 20px black solid;
+        border-radius: 220px;
+        background-color: black;
+    }
+
+    .a {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 200px;
+        background-color: red;
+        clip: rect(0px, 190px, 190px, 0px);
+        opacity: 0.6;
+        transition: opacity 0.3s;
+        -webkit-transition: opacity 0.3s;
+    }
+
+    .b {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 200px;
+        background-color: cornflowerblue;
+        clip: rect(0px, 400px, 190px, 210px);
+        opacity: 0.6;
+        transition: opacity 0.3s;
+        -webkit-transition: opacity 0.3s;
+    }
+
+    .c {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 200px;
+        background-color: goldenrod;
+        clip: rect(210px, 400px, 400px, 210px);
+        opacity: 0.6;
+        transition: opacity 0.3s;
+        -webkit-transition: opacity 0.3s;
+    }
+
+    .d {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 200px;
+        background-color: seagreen;
+        clip: rect(210px, 190px, 400px, 0px);
+        opacity: 0.6;
+        transition: opacity 0.3s;
+        -webkit-transition: opacity 0.3s;
+    }
+
+    .display-text {
+        position: absolute;
+        top: 90px;
+        left: 90px;
+        width: 220px;
+        height: 220px;
+        border-radius: 110px;
+        border: 15px black solid;
+        background-color: darkgrey;
+    }
+
+    .switch {
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        width: 30px;
+        height: 70px;
+        border-radius: 15px;
+        background-color: darkred;
+        transition: background-color 1s;
+        -webkit-transition: background-color 1s;
+    }
+    .switch:hover{
+        cursor: pointer;
+    }
+    .switch::before{
+        content: "switch";
+        position: absolute;
+        top: -27px;
+        left: 5px;
+        font-size:20px;
+        font-weight: 500;
+        color: white;
+    }
+    .switch-btn {
+        content: "";
+        position: absolute;
+        top: 25px;
+        left: 0px;
+        width: 30px;
+        height: 45px;
+        border-radius: 15px;
+        background-color: black;
+        transition: top 0.5s;
+        -webkit-transition: top 0.5s;
+    }
+
+    .strict {
+        position: absolute;
+        top: 60px;
+        left: 140px;
+        width: 30px;
+        height: 70px;
+        border-radius: 15px;
+        background-color: darkred;
+        transition: background-color 1s;
+        -webkit-transition: background-color 1s;
+    }
+    .strict:hover{
+        cursor: pointer;
+    }
+    .strict::before {
+        content: "strict";
+        position: absolute;
+        top: -27px;
+        left: -18px;
+        font-size:20px;
+        font-weight: 500;
+        color: white;
+    }
+    .strict-btn {
+        content: "";
+        position: absolute;
+        top: 25px;
+        left: 0px;
+        width: 30px;
+        height: 45px;
+        border-radius: 15px;
+        background-color: black;
+        transition: top 0.5s;
+        -webkit-transition: top 0.5s;
+    }
+
+    .show-num {
+        position: absolute;
+        top: 60px;
+        left: 60px;
+        width: 70px;
+        height: 70px;
+        border-radius: 35px;
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-size: 35px;
+        font-weight: 500;
+        line-height: 2;
+    }
+    .show-num:hover{
+        cursor: pointer;
+    }
+    .show-num::before{
+        content: "start";
+        position: absolute;
+        top: 62px;
+        left: 15px;
+        font-size:20px;
+        font-weight: 500;
+    }
+</style>
+
+<div class="game-box">
+    <div class="a main" data-val="a"></div>
+    <div class="b main" data-val="b"></div>
+    <div class="c main" data-val="c"></div>
+    <div class="d main" data-val="d"></div>
+    <div class="display-text">
+        <div class="switch"><span class="switch-btn" data-val="off"></span></div>
+        <div class="strict"><span class="strict-btn" data-val="off"></span></div>
+        <div class="show-num">00</div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var arr = [];
+        var num = 0;
+        var index=0;
+        var on_off = false;
+        var strict_val = false;
+        var status = false;
+        var hint_time;
+
+        $('.switch-btn').click(function () {
+            var val = $(this).attr('data-val');
+            if(val=='off'){
+                $(this).css({ 'top': '0px','left': '0px'});
+                $('.switch').css('background-color','darkgreen');
+                $(this).attr('data-val','on');
+                on_off = true;
+            }else{
+                $(this).css({ 'top': '25px','left': '0px'});
+                $('.switch').css('background-color','darkred');
+                $(this).attr('data-val','off');
+                on_off = false;
+                clearInterval(hint_time);
+                arr=[];
+                num = 0;
+                index=0;
+            }
+        });
+
+        $('.strict-btn').click(function () {
+            var val = $(this).attr('data-val');
+            if(val=='off'){
+                $(this).css({ 'top': '0px','left': '0px'});
+                $('.strict').css('background-color','darkgreen');
+                $(this).attr('data-val','on');
+                strict_val = true;
+            }else{
+                $(this).css({ 'top': '25px','left': '0px'});
+                $('.strict').css('background-color','darkred');
+                $(this).attr('data-val','off');
+                strict_val = false;
+            }
+        });
+
+        function restart() {
+            arr = [];
+            num = 0;
+            index=0;
+            add();
+            status = false;
+            setTimeout(showNum,1000);
+            hint_time = setInterval(hint,1500);
+        }
+
+        function showNum() {
+            if(arr.length<10){
+                $('.show-num').text('0'+arr.length);
+            }else {
+                $('.show-num').text(arr.length);
+            }
+            if(!status){
+                $('.show-num').css('color','red');
+            }else {
+                $('.show-num').css('color','white');
+            }
+        }
+
+        function add() {
+            var list = ['a','b','c','d'];
+            var i = Math.floor(Math.random()*4);
+            arr.push(list[i]);
+        }
+
+        function bright(a) {
+                $('.'+a).css('opacity', '1');
+            setTimeout(function () {
+                $('.'+a).css('opacity', '0.6');
+            },700);
+        }
+
+        function hint() {
+            if(index<arr.length){
+                bright(arr[index]);
+                index++;
+            }
+            else{
+                index=0;
+                status = true;
+                clearInterval(hint_time);
+                hint_time = null;
+                showNum();
+            }
+        }
+
+        $('.show-num').click(function () {
+            if(on_off&&!(hint_time)&&num==0){
+                restart();
+            }
+        });
+
+        $('.main').click(function () {
+            if(on_off&&status){
+                var val = $(this).attr('data-val');
+                if(val==arr[num]){
+                    num++;
+                    status=false;
+                    setTimeout(function () {
+                        status=true;
+                    },1000);
+                    bright(val);
+                    if(num==20){
+                        alert('你赢了！');
+                        restart();
+                    }
+                    if(num>=arr.length){
+                        num = 0;
+                        add();
+                        status = false;
+                        setTimeout(showNum,1000);
+                        hint_time = setInterval(hint,1500);
+                    }
+                }else{
+                    alert('错误');
+                    num = 0;
+                    if(strict_val){
+                        restart()
+                    }else {
+                        num = 0;
+                        status = false;
+                        setTimeout(showNum,1000);
+                        hint_time = setInterval(hint,1500);
+                    }
+                }
+
+
+            }
+        });
+
+
+    })
+</script>
+</body>
+</html>
