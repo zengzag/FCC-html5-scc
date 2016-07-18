@@ -189,7 +189,14 @@
         <div class="strict"><span class="strict-btn" data-val="off"></span></div>
         <div class="show-num">00</div>
     </div>
+    <audio id="Audio1">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="Audio2">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" type="audio/mpeg">
+    </audio>
 </div>
+
 
 <script>
     $(document).ready(function () {
@@ -200,6 +207,9 @@
         var strict_val = false;
         var status = false;
         var hint_time;
+        var Audio1 = document.getElementById("Audio1");
+        var Audio2 = document.getElementById("Audio2");
+
 
         $('.switch-btn').click(function () {
             var val = $(this).attr('data-val');
@@ -267,6 +277,7 @@
         function bright(a) {
                 $('.'+a).css('opacity', '1');
             setTimeout(function () {
+                Audio1.play();
                 $('.'+a).css('opacity', '0.6');
             },700);
         }
@@ -299,29 +310,37 @@
                     status=false;
                     setTimeout(function () {
                         status=true;
-                    },1000);
+                    },800);
                     bright(val);
                     if(num==20){
                         alert('你赢了！');
                         restart();
                     }
                     if(num>=arr.length){
+                        setTimeout(function () {
+                            status=false;
+                        },800);
                         num = 0;
                         add();
-                        status = false;
                         setTimeout(showNum,1000);
-                        hint_time = setInterval(hint,1500);
+                        setTimeout(function () {
+                            hint_time = setInterval(hint,1500);
+                        },1500);
                     }
                 }else{
-                    alert('错误');
+                    Audio2.play();
                     num = 0;
                     if(strict_val){
+                        alert('失败.得分为'+arr.length);
                         restart()
                     }else {
+                        alert('错误,请重试');
                         num = 0;
                         status = false;
                         setTimeout(showNum,1000);
-                        hint_time = setInterval(hint,1500);
+                        setTimeout(function () {
+                            hint_time = setInterval(hint,1500);
+                        },1500);
                     }
                 }
 
