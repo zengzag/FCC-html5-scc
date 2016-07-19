@@ -15,6 +15,8 @@
     body {
         text-align: center;
         background-color: midnightblue;
+        transition: background-color 0.5s;
+        -webkit-transition: background-color 0.5s;
     }
 
     .show-box {
@@ -37,6 +39,8 @@
         font-size: larger;
         min-height: 200px;
         text-align: center;
+        transition: color 0.5s;
+        -webkit-transition: color 0.5s;
     }
 
     .text {
@@ -59,6 +63,8 @@
         position: absolute;
         bottom: 15px;
         cursor: pointer;
+        transition: background-color 0.5s;
+        -webkit-transition: background-color 0.5s;
     }
 
     .button:focus,
@@ -110,16 +116,16 @@
         });
 
         $('#next').click(function () {
-            $("body").fadeOut(500);
-            setTimeout(function () {
+            $("#text").fadeOut(500);
+
                 var colors = randomColor();
                 $("body").css('background-color', colors);
                 $(".button").css('background-color', colors);
                 $(".show-text").css('color', colors);
-                nextText();
-            }, 500);
-            $("body").fadeIn(500);
-                    })
+            setTimeout(nextText,500);
+
+            $("#text").fadeIn(500);
+                    });
 
         function nextText() {
             var num = Math.floor(Math.random() * textArr.length);

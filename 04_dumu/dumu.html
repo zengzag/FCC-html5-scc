@@ -19,6 +19,7 @@
         border: 1px solid;
         margin-bottom: 10px;
         position: relative;
+        overflow: hidden;
     }
 
     .input-text-div {
@@ -44,7 +45,6 @@
         left: 0;
         top: 0;
     }
-
     </style>
 
 </head>
@@ -79,12 +79,19 @@
             $(".text-box").empty();
         });
 
+        $("#text-input").keypress(function(event) {
+            if (event.keyCode == "13") {
+                $(".send").trigger('click');
+            }
+        });
+
+
         var min = $('.text-box').offset().top;
         var max = min + $('.text-box').height();
 
         var danmu = function(div){
             $('.text-box').append(div);
-            var maxWidth=$('.text-box').width()-div.width();
+            var maxWidth=$('.text-box').width();
             div.css({"top":Math.floor(Math.random()*(max-min-32)+min-32)+'px',color:randColor()});
             div.animate({left:maxWidth+ "px"},5000,function(){
                 div.remove();

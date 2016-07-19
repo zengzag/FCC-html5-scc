@@ -224,6 +224,7 @@
                 $(this).attr('data-val','off');
                 on_off = false;
                 clearInterval(hint_time);
+                hint_time=null;
                 arr=[];
                 num = 0;
                 index=0;
@@ -276,8 +277,8 @@
 
         function bright(a) {
                 $('.'+a).css('opacity', '1');
+            Audio1.play();
             setTimeout(function () {
-                Audio1.play();
                 $('.'+a).css('opacity', '0.6');
             },700);
         }

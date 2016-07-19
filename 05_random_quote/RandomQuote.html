@@ -15,6 +15,8 @@
     body {
         text-align: center;
         background-color: midnightblue;
+        transition: background-color 0.5s;
+        -webkit-transition: background-color 0.5s;
     }
 
     .show-box {
@@ -46,6 +48,8 @@
         font-size: larger;
         min-height: 360px;
         text-align: center;
+        transition: color 0.5s;
+        -webkit-transition: color 0.5s;
     }
 
     .text {
@@ -66,6 +70,8 @@
         position: absolute;
         bottom: 20px;
         cursor: pointer;
+        transition: background-color 0.5s;
+        -webkit-transition: background-color 0.5s;
     }
 
     .button:focus,
@@ -118,16 +124,16 @@
 
         $('#next').click(function () {
 
-            $("body").fadeOut(500);
-            setTimeout(function () {
+            $('#text').fadeOut(500);
+
                 var colors = randomColor();
                 $("body").css('background-color', colors);
                 $(".button").css('background-color', colors);
                 $(".show-text").css('color', colors);
-            }, 500);
-            $("body").fadeIn(500);
-            nextText();
-        })
+
+            $('#text').fadeIn(500);
+            setTimeout(nextText,500);
+        });
 
         function nextText() {
 
@@ -177,9 +183,7 @@
              var c = jdata.answers[i].summary;
              textArr.push('<span class="title">' + a + '</span><br/>' + '<span class="author">作者：' + b + '</span><br/>' + c);
              }*/
-            if (textArr.length <= 0) {
-                textArr = ['如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落01', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落02', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落03', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落04', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落05', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落06', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落07', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落08', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落09', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落10', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落11', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落12', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落13', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落14', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落15', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落16', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落17', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落18', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落19', '如果你看到此文字而非知乎精选，则是由于跨域的原因，代码挂到pencode后无法获取文章消息，这是一段人为添加的段落用来测试随机。段落20'];
-            }
+
             nextText();
         }
     })
